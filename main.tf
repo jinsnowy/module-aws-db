@@ -4,7 +4,7 @@ provider "aws" {
 
 # Lookup the EKS cluster that we created for the Microservices
 data "aws_eks_cluster" "microservice-cluster" {
-  name = "${var.eks_id}"
+  name = var.eks_id
 }
 
 # The RDS subnet group that points to the subnets we've declared above
@@ -42,7 +42,7 @@ resource "aws_db_instance" "mysql-db" {
   engine            = "mysql"
   engine_version    = "5.7"
   instance_class    = "db.t2.micro"
-  name              = var.mysql_database
+  db_name           = var.mysql_database
   identifier        = "microservices-mysql"
 
   username             = var.mysql_user
