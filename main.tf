@@ -41,7 +41,7 @@ resource "aws_db_instance" "mysql-db" {
   storage_type      = "gp2"
   engine            = "mysql"
   engine_version    = "5.7"
-  instance_class    = "db.t2.micro"
+  instance_class    = "db.t3.small"
   db_name           = var.mysql_database
   identifier        = "microservices-mysql"
 
@@ -66,8 +66,8 @@ resource "aws_elasticache_cluster" "redis-db" {
   engine               = "redis"
   node_type            = "cache.m4.large"
   num_cache_nodes      = 1
-  parameter_group_name = "default.redis3.2"
-  engine_version       = "3.2.10"
+  parameter_group_name = "default.redis7"
+  engine_version       = "7.0"
   port                 = 6379
 
   subnet_group_name  = aws_elasticache_subnet_group.redis-subnet-group.name
